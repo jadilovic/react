@@ -4,46 +4,42 @@ import "./index.css";
 
 // Stateless function component
 // Always return JSX
-const firstBook = {
-  author: "Dav Pilkey",
-  title: "Dog Man: Mothering Heights",
-  img:
-    "https://images-na.ssl-images-amazon.com/images/I/51wlUnNtsHL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg",
-};
-
-const secondBook = {
-  author: "Two Hoots Coloring",
-  title: "Dinosaur Coloring Book for Kids",
-  img:
-    "https://images-na.ssl-images-amazon.com/images/I/517lwYMMc5L._SX384_BO1,204,203,200_.jpg",
-};
+const books = [
+  {
+    id: 1,
+    author: "Dav Pilkey",
+    title: "Dog Man: Mothering Heights",
+    img:
+      "https://images-na.ssl-images-amazon.com/images/I/51wlUnNtsHL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg",
+  },
+  {
+    id: 2,
+    author: "Two Hoots Coloring",
+    title: "Dinosaur Coloring Book for Kids",
+    img:
+      "https://images-na.ssl-images-amazon.com/images/I/517lwYMMc5L._SX384_BO1,204,203,200_.jpg",
+  },
+  {
+    id: 3,
+    author: "Sherri Duskey Rinker",
+    title: "Goodnight, Goodnight Construction Site",
+    img:
+      "https://images-na.ssl-images-amazon.com/images/I/518vmGefs-L._SX455_BO1,204,203,200_.jpg",
+  },
+];
 
 function BookList() {
   return (
     <section className="booklist">
-      <Book
-        author={firstBook.author}
-        title={firstBook.title}
-        img={firstBook.img}
-      >
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum
-          dolorem qui debitis architecto delectus illum quo cum vitae veniam
-          optio nulla in repellendus, inventore a amet soluta sequi, quam sint!
-        </p>
-      </Book>
-      <Book
-        author={secondBook.author}
-        title={secondBook.title}
-        img={secondBook.img}
-      />
+      {books.map((book) => {
+        return <Book key={book.id} book={book} />;
+      })}
     </section>
   );
 }
 
 const Book = (props) => {
-  console.log(props);
-  const { img, title, author } = props;
+  const { img, title, author, id } = props.book;
   return (
     <article className="book">
       <img src={img} alt="childrens book" />
@@ -53,7 +49,7 @@ const Book = (props) => {
       >
         {author}
       </h4>
-      {props.children}
+      <h5>{id}</h5>
     </article>
   );
 };
